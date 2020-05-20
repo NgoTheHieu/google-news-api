@@ -1,6 +1,6 @@
 let newsList = []
 const apiKey = "beea6c9a09cb4531846bea65a234b81f"
-let numberOfArticles;
+let numberOfArticles=0;
 const numberOfNews = () => {
 
 }
@@ -11,7 +11,8 @@ const loadNews = async() => {
     newsList = result.articles
     render(newsList)
     console.log("What we get here?",result);
-    document.getElementById("numberOfArticles").innerHTML += `"The number of articles : ${result.articles.length}"`
+    numberOfArticles += result.articles.length
+    document.getElementById("numberOfArticles").innerHTML = `"The number of articles : ${numberOfArticles}"`
 }
 
 const render = (list) =>{
@@ -42,6 +43,8 @@ const loadMoreNews = async() => {
     newsList = result.articles
     render(newsList)
     console.log("What we get here?",result);
+    numberOfArticles += result.articles.length
+    document.getElementById("numberOfArticles").innerHTML = `"The number of articles : ${numberOfArticles}"`
 }
 loadNews()
 document.getElementById("loadMoreButton").addEventListener("click",loadMoreNews);
